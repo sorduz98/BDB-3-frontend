@@ -1,4 +1,77 @@
 :host {
+
+  --header_background_color: rgb(51, 51, 51);
+  --header_text_color: #fdfdfd;
+  --alternate_row_background_color: rgb(217, 237, 243);
+  --content-padding: calc(var(--default-padding) * 2);
+
   width: 100%;
   height: 100%;
+  padding: var(--content-padding);
+  display: flex;
+  overflow: hidden;
+
+  .users-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    height: fit-content;
+    max-height: 100%;
+    transform: translateZ(-3);
+    box-shadow: 0px 2px 20px 8px rgba(0, 0, 0, 0.20);
+
+    th,
+    td {
+      padding: 5px;
+      text-align: center;
+      flex: 1 1 auto;
+    }
+
+    tr {
+      display: flex;
+    }
+
+    thead {
+      background-color: var(--header_background_color);
+      color: var(--header_text_color);
+    }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      width: 100%;
+
+      /* width */
+      &::-webkit-scrollbar {
+        position: absolute;
+        width: 10px;
+        border-radius: 10px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      tr:nth-child(even) {
+        background-color: var(--alternate_row_background_color);
+      }
+    }
+  }
 }

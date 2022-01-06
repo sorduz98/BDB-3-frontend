@@ -1,0 +1,36 @@
+:host {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ebf1f3;
+  transform: translateZ(-3);
+  box-shadow: 0px 2px 8px 5px rgba(0, 0, 0, 0.12);
+
+
+  h2 {
+    flex: 1 1 auto;
+    font-size: 1.5rem;
+    color: #4d7585;
+    padding: 0 var(--default-padding) 0 calc(var(--default-padding) * 2);
+  }
+
+  .buttons-container {
+    display: flex;
+    height: 100%;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 150px;
+      height: 100%;
+      border: none;
+      background-color: transparent;
+      padding: 0 var(--default-padding);
+      color: #4d7585;
+    }
+  }
+}
