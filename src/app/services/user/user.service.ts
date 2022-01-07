@@ -18,12 +18,15 @@ export class UserService {
 
   getUsers() {
     // https://jsonplaceholder.typicode.com/
-    return this.http.get(`${environment.apiUrl}users`)
-      .pipe(tap(
-        (users) => {
-          this._users.next(users);
-        }
-      ));
+    return this.http.get<any[]>(`${environment.apiUrl}users`)
+      .pipe(
+        tap(
+          (users) => {
+            users.sort((a, b) => a?.id - b?.id);
+            this._users.next(users);
+          }
+        )
+      );
   }
 
   createUser(userData: {fullname: string, birthdate: string, identification: number}) {
