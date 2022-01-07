@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   private _users = new BehaviorSubject<any>([]);
 
-  private data_users = [
-    {
-      fullname: 'John Doe',
-      birthdate: new Date(),
-      identification: 13233445566,
-    },
-    {
-      fullname: 'John Doe',
-      birthdate: new Date(),
-      identification: 13233445566,
-    },
-    {
-      fullname: 'John Doe',
-      birthdate: new Date(),
-      identification: 13233445566,
-    }
-  ]
   constructor(private http: HttpClient) {
-    this._users.next(this.data_users);
   }
 
   get users() {
@@ -34,15 +17,22 @@ export class UserService {
   }
 
   getUsers() {
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
+    // https://jsonplaceholder.typicode.com/
+    return this.http.get(`${environment.apiUrl}users`)
+      .pipe(tap(
+        (users) => {
+          this._users.next(users);
+        }
+      ));
   }
 
-  createUser(userData: {fullname: string, birthdate: Date, identification: number}) {
+  createUser(userData: {fullname: string, birthdate: string, identification: number}) {
     const payload = {
       ...userData,
+      birthdate: new Date(userData.birthdate),
       father_id: null,
       mother_id: null,
     };
-    return this.http.post('https://jsonplaceholder.typicode.com/users', payload);
+    return this.http.post(`${environment.apiUrl}users`, payload);
   }
 }

@@ -20,11 +20,15 @@ export class UsersComponent implements OnInit, OnDestroy {
       .pipe(take(1), takeUntil(this.destroy$))
       .subscribe({
         next: (users) => {
-        this.loading = false;
-      },
-      error: () => {
-        this.loading = false;
-      }
+          setTimeout(() => {
+            this.loading = false;
+          }, 1000);
+        },
+        error: () => {
+          setTimeout(() => {
+            this.loading = false;
+          }, 1000);
+        }
     });
 
     this.users = this.userService.users;

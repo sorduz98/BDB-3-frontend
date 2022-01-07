@@ -17,6 +17,8 @@ export class UserComponent implements OnInit {
   );
 
   public loading = false;
+  public error = '';
+  public maxDate = new Date();
 
   constructor(
     private fb: FormBuilder,
@@ -29,6 +31,7 @@ export class UserComponent implements OnInit {
 
   onSubmit() {
     this.userForm.markAllAsTouched();
+    this.error = '';
     if(this.userForm.invalid) {
       return;
     }
@@ -36,11 +39,16 @@ export class UserComponent implements OnInit {
     this.loading = true;
     this.userService.createUser(this.userForm.value)
     .subscribe({
-      next: () => {
-        this.loading = false;
+      next: (user) => {
+        setTimeout(() => {
+          this.loading = false;
+        }, 1000);
       },
-      error: () => {
-        this.loading = false;
+      error: (err) => {
+        this.error = err.error.message;
+        setTimeout(() => {
+          this.loading = false;
+        }, 1000);
       }
     });
 

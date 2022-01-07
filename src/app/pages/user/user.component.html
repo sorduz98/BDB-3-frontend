@@ -20,7 +20,7 @@
     <div class="input-place">
       <label>Fecha de nacimiento</label>
       <div class="input-wrapper">
-        <input formControlName="birthdate" type="date">
+        <input formControlName="birthdate" max="{{maxDate|date:'yyyy-MM-dd'}}" type="date">
       </div>
     </div>
     <span *ngIf="userForm.get('birthdate')?.invalid && userForm.get('birthdate')?.touched">Ingrese un valor valido.</span>
@@ -29,7 +29,8 @@
       [disabled]="userForm.invalid && userForm.dirty && loading">
         Guardar
         <app-loader-bar *ngIf="loading"></app-loader-bar>
-      </button>
+    </button>
+    <span *ngIf="error && error.length > 0">{{error}}</span>
   </form>
 
 </main>
