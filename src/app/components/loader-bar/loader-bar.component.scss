@@ -1,0 +1,42 @@
+:host {
+  --color: #33b3e6;
+  --height: 3px;
+  --top: auto;
+  --bottom: 0;
+
+  -webkit-animation-name: horizontalProgressBar;
+  animation-name: horizontalProgressBar;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  background: var(--color);
+  height: var(--height);
+  left: 0;
+  bottom: var(--bottom);
+  top: var(--top);
+  position: absolute;
+  z-index: 9999;
+  animation-duration: 15s;
+  animation-fill-mode: both;
+  user-select: none;
+}
+@keyframes horizontalProgressBar {
+  0% {
+      width: 0%;
+  }
+
+  25% {
+      width: 55%;
+  }
+
+  50% {
+      width: 75%;
+  }
+
+  75% {
+      width: 95%;
+  }
+
+  100% {
+      width: 100%;
+  }
+}

@@ -26,8 +26,9 @@
     <span *ngIf="userForm.get('birthdate')?.invalid && userForm.get('birthdate')?.touched">Ingrese un valor valido.</span>
 
     <button type="submit"
-      [disabled]="userForm.invalid && userForm.dirty">
+      [disabled]="userForm.invalid && userForm.dirty && loading">
         Guardar
+        <app-loader-bar *ngIf="loading"></app-loader-bar>
       </button>
   </form>
 

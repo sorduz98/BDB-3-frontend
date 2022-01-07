@@ -8,12 +8,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoaderBarComponent } from './components/loader-bar/loader-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UserComponent,
     UsersComponent,
+    LoaderBarComponent,
   ],
   imports: [
     BrowserModule,

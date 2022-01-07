@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-user',
@@ -17,7 +18,10 @@ export class UserComponent implements OnInit {
 
   public loading = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.userForm.get('fullname')?.dirty
@@ -25,6 +29,21 @@ export class UserComponent implements OnInit {
 
   onSubmit() {
     this.userForm.markAllAsTouched();
+    if(this.userForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.userService.createUser(this.userForm.value)
+    .subscribe({
+      next: () => {
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+
     console.log(this.userForm.value);
   }
 

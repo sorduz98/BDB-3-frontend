@@ -37,7 +37,12 @@ export class UserService {
     return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
 
-  createUser() {
-    return this.http.post('https://jsonplaceholder.typicode.com/users', {});
+  createUser(userData: {fullname: string, birthdate: Date, identification: number}) {
+    const payload = {
+      ...userData,
+      father_id: null,
+      mother_id: null,
+    };
+    return this.http.post('https://jsonplaceholder.typicode.com/users', payload);
   }
 }

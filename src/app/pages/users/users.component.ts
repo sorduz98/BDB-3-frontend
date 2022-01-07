@@ -9,16 +9,23 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UsersComponent implements OnInit, OnDestroy {
   public users: Observable<any> = of([]);
+  public loading = false;
   private destroy$ = new Subject<void>();
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.userService.getUsers()
       .pipe(take(1), takeUntil(this.destroy$))
-      .subscribe(data => {
-        // console.log(data);
-      });
+      .subscribe({
+        next: (users) => {
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
 
     this.users = this.userService.users;
   }

@@ -63,6 +63,7 @@
       }
 
       button[type="submit"] {
+        position: relative;
         width: 100%;
         max-width: 250px;
         height: 35px;
@@ -74,6 +75,11 @@
         font-weight: normal;
         border-radius: 15px;
         cursor: pointer;
+        overflow: hidden;
+
+        app-loader-bar {
+          --height: 4px;
+        }
 
         &[disabled] {
           background-color: #ccc;

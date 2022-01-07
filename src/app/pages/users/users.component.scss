@@ -9,6 +9,13 @@
   padding: var(--content-padding);
   display: flex;
   overflow: hidden;
+  position: relative;
+
+  app-loader-bar {
+    --top: 0;
+    --height: 4px;
+    opacity: .5;
+  }
 
   .users-table {
     display: flex;
