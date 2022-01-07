@@ -1,26 +1,34 @@
-<h2>Crear Usuario</h2>
+<main>
 
+  <h2>Crear Usuario</h2>
 
-<form>
-  <div class="input-place">
-    <label>Nombre Completo</label>
-    <div class="input-wrapper">
-      <input type="text" placeholder="Ej: Juanito Pérez">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="input-place">
+      <label>Nombre Completo</label>
+      <div class="input-wrapper">
+        <input type="text" formControlName="fullname" placeholder="Ej: Juanito Pérez">
+      </div>
     </div>
-  </div>
-  <div class="input-place">
-    <label>Número de Cédula</label>
-    <div class="input-wrapper">
-      <input type="text" placeholder="Ej: 1026455777">
+    <span *ngIf="userForm.get('fullname')?.invalid && userForm.get('fullname')?.touched">El nombre debe tener al menos 10 caracteres.</span>
+    <div class="input-place">
+      <label>Número de Cédula</label>
+      <div class="input-wrapper">
+        <input type="number" formControlName="identification" placeholder="Ej: 1026455777">
+      </div>
     </div>
-  </div>
-  <div class="input-place">
-    <label>Fecha de nacimiento</label>
-    <div class="input-wrapper">
-      <input type="date">
+    <span *ngIf="userForm.get('identification')?.invalid && userForm.get('identification')?.touched">Ingrese un valor valido.</span>
+    <div class="input-place">
+      <label>Fecha de nacimiento</label>
+      <div class="input-wrapper">
+        <input formControlName="birthdate" type="date">
+      </div>
     </div>
-  </div>
+    <span *ngIf="userForm.get('birthdate')?.invalid && userForm.get('birthdate')?.touched">Ingrese un valor valido.</span>
 
-  <button type="submit">Crear</button>
-</form>
+    <button type="submit"
+      [disabled]="userForm.invalid && userForm.dirty">
+        Guardar
+      </button>
+  </form>
 
+</main>

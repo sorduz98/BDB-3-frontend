@@ -4,59 +4,82 @@
   padding: var(--content-padding);
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
 
-  h2 {
-    padding:var(--default-padding);
-  }
-
-  form {
+  main {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 1000px;
 
-    .input-place {
+    h2 {
       padding: var(--default-padding);
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    }
 
-      label {
-        margin-right: var(--default-padding);
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .input-place {
+        padding: var(--default-padding);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label {
+          margin-right: var(--default-padding);
+        }
+
+        .input-wrapper {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          padding: 5px var(--default-padding);
+          flex: 1 1 auto;
+          border-bottom: 1px solid #ccc;
+          background: white;
+          border-radius: 5px;
+
+          input {
+            &:focus {
+              outline: none;
+            }
+            width: 100%;
+            border: none;
+            padding: 0;
+            background: transparent;
+            color: #4d7585;
+          }
+        }
       }
 
-      .input-wrapper {
-        padding: 5px var(--default-padding);
-        flex: 1 1 auto;
-        border-bottom: 1px solid #ccc;
-        background: white;
-        border-radius: 5px;
+      span {
+        color: #c04444;
+      }
 
-        input {
-          width: 100%;
-          border: none;
-          padding: 0;
-          background: transparent;
-          color: #4d7585;
+      button[type="submit"] {
+        width: 100%;
+        max-width: 250px;
+        height: 35px;
+        margin: var(--default-padding);
+        border: none;
+        background-color: #4d7585;
+        color: white;
+        font-size: 16px;
+        font-weight: normal;
+        border-radius: 15px;
+        cursor: pointer;
+
+        &[disabled] {
+          background-color: #ccc;
+          cursor: not-allowed;
         }
       }
     }
-
-    button[type="submit"] {
-      width: 100%;
-      max-width: 250px;
-      height: 35px;
-      margin: var(--default-padding);
-      border: none;
-      background-color: #4d7585;
-      color: white;
-      font-size: 18px;
-      font-weight: normal;
-      border-radius: 15px;
-      cursor: pointer;
-    }
   }
-
 }
