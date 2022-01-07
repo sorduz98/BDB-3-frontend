@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://stormy-wave-47972.herokuapp.com/',
+  apiUrl: 'https://stormy-wave-47972.herokuapp.com/',
 };
